@@ -1,0 +1,88 @@
+const users = [
+    {
+        id: 1,
+        name: "Alex",
+        age: 25,
+        active: true,
+    },
+    {
+        id: 2,
+        name: "Maria",
+        age: 17,
+        active: false,
+    }
+]
+
+function getUserData(users, userId) {
+    if (typeof userId !== "number") {
+        throw new TypeError("userId должен быть числом")
+    }
+
+    if (!Array.isArray(users)) {
+        throw new TypeError("users должен быть массивом")
+    }
+    users.forEach((user) => {
+        if (!"id" in user) {
+            throw new TypeError("Все объекты массива users должны содержать ключ 'id'")
+        }
+        if (!typeof user.id in ["number", "bigint"]) {
+            throw new TypeError("У всех элементов массива users, тип данных значение обращение к которому происходит по ключу 'id' должен быть 'number' или 'bigint'")
+        }
+
+        if (!"name" in user) {
+            throw new TypeError("Все объекты массива users должны содержать ключ 'name'")
+        }
+        if (typeof user.name !== "string") {
+            throw new TypeError("У всех элементов массива users, тип данных значение обращение к которому происходит по ключу 'name' должен быть 'string'")
+        }
+
+        if (!"age" in user) {
+            throw new TypeError("Все объекты массива users должны содержать ключ 'age'")
+        }
+        if (typeof user.age !== "number") {
+            throw new TypeError("У всех элементов массива users, тип данных значение обращение к которому происходит по ключу 'age' должен быть 'number'")
+        }
+
+        if (!"active" in user) {
+            throw new TypeError("Все объекты массива users должны содержать ключ 'active'")
+        }
+        if (typeof user.active !== "boolean") {
+            throw new TypeError("У всех элементов массива users, тип данных значение обращение к которому происходит по ключу 'active' должен быть 'boolean'")
+        }
+    })
+
+    let activeUsers = users.filter((user) => user.active)
+    if (activeUsers.length > 1) {
+        console.log("Все активные пользователи: ")
+        activeUsers.forEach((user) => {
+            console.log(
+                "Id: " + user.id + "\t", 
+                "Name: " + user.name + "\t", 
+                "Age: " + user.age + "\t", 
+                "Active: " + user.active + "\t"
+            )
+        })
+    }
+    else {
+        console.log("Нет активных пользователей")
+    }
+
+    let userNames = users.map((user) => user.Name)
+    console.log(userNames)
+
+    foundUser = users.find((user) => user.id == userId)
+    if (foundUser !== undefined) {
+        console.log("Пользователь с 'id': " + userId + ": ")
+        console.log(
+            "Id: " + foundUser.id + "\t", 
+            "Name: " + foundUser.name + "\t", 
+            "Age: " + foundUser.age + "\t", 
+            "Active: " + foundUser.active + "\t"
+        )
+    }
+    else {
+        console.log("Пользователь с 'id': " + userId + "не найден")
+    }
+}
+
+getUserData(users, 1)
