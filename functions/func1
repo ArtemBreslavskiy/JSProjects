@@ -52,7 +52,7 @@ function getUserData(users, userId) {
     })
 
     let activeUsers = users.filter((user) => user.active)
-    if (activeUsers.length > 1) {
+    if (activeUsers.length > 0) {
         console.log("Все активные пользователи: ")
         activeUsers.forEach((user) => {
             console.log(
@@ -67,8 +67,11 @@ function getUserData(users, userId) {
         console.log("Нет активных пользователей")
     }
 
-    let userNames = users.map((user) => user.Name)
-    console.log(userNames)
+    let userNames = users.map((user) => user.name)
+    console.log("Имена всех пользователей:")
+    userNames.forEach((value) => {
+        console.log(value)
+    })
 
     foundUser = users.find((user) => user.id == userId)
     if (foundUser !== undefined) {
